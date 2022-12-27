@@ -4,9 +4,28 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+//eventlistener invokes mimicServerCall()
+//fetch()
+//then()
 
+const allHearts = document.querySelectorAll(".like-glyph");
 
+function callback(event) {
+  const heartIcon = event.target;
+  mimicServerCall()
+    .then((serverMessage) =>
+      {alert(serverMessage)
+      heartIcon.innerText = FULL_HEART[heartIcon.innerText];
+    })  
+    .catch((error) => {
+      alert("Something went wrong")
+      console.log(error)
+    });
+}
 
+for (const heart of allHearts) {
+  heart.addEventListener("click", callback);
+}
 //------------------------------------------------------------------------------
 // Don't change the code below: this function mocks the server response
 //------------------------------------------------------------------------------
